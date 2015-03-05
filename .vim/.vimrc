@@ -120,7 +120,7 @@ set smartindent     " indent when
 set tabstop=4       " tab width
 set softtabstop=4   " backspace
 set shiftwidth=4    " indent width
-set expandtab       " expand tab to space
+" set expandtab       " expand tab to space tab键用空格代替
 
 
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120

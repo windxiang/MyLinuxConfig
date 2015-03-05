@@ -1,3 +1,6 @@
 .vim/bundle/*
+.vim/doc/
+.vim/plugin/
+.vim/syntax/
 fonts.dir
 fonts.scale
