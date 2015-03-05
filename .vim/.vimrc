@@ -87,7 +87,7 @@ set nofoldenable                                                  " disable fold
 set confirm                                                       " prompt when existing from an unsaved file  在处理未保存或只读文件的时候，弹出确认
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-set mouse=a                                                       " use mouse in all modes   鼠标模式
+set mouse=v                                                       " 在可视模式下支持鼠标模式
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
 set scrolloff=5                                                   " 5 lines above/below cursor when scrolling  光标移动到buffer的顶部和底部时保持5行距离

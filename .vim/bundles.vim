@@ -13,7 +13,8 @@ Bundle 'gmarik/vundle'
 "------------------
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'ervandew/supertab'
-Bundle 'mattn/zencoding-vim'
+"Bundle 'mattn/zencoding-vim'  "这个已经过时，使用emmet-vim代替  ，这2个都是HTML插件
+Bundle 'mattn/emmet-vim'
 Bundle 'rizzatti/funcoo.vim'
 
 "-----------------
