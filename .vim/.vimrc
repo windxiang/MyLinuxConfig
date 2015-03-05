@@ -79,6 +79,7 @@ set cursorline cursorcolumn
 set incsearch
 set ignorecase    "搜索忽略大小写
 set smartcase
+set hlsearch      "搜索高亮显示
 
 " editor settings
 set history=1000
