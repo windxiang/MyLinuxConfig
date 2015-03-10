@@ -8,7 +8,7 @@
 "F2 ->
 "F3 ->GundoToggle插件，        
 "F4 ->IndentGuidesToggle插件， 在普通模式下，可以高亮缩进的显示
-"F5 ->TagbarToggle插件，       
+"F5 ->TagbarToggle插件，       也就是taglist的替代品
 "F6 ->NERDTreeToggle插件，     左边打开当前目录树
 "F7 ->Gist插件，               
 "F8 ->
@@ -70,9 +70,11 @@ execute neocomplete#initialize()
 "--------------------------------------------------------------------------------------------------------------------------------------------------------------
 " color scheme
 set background=dark
+
 "color vividchalk
 color molokai
 let g:molokai_original = 0
+"colorscheme solarized
 
 " For showmarks plugin
 hi ShowMarksHLl ctermbg=Yellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
@@ -508,6 +510,65 @@ nmap <tab>h <C-w>h
 nmap <tab>k <C-w>k
 nmap <tab>l <C-w>l
 
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"ctags配置文件
+"map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+"imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+set tags=tags
+set tags+=./tags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"cscope配置文件
+if has("cscope")
+  set csprg=/usr/bin/cscope
+  set csto=1
+  set cst
+  set nocsverb
+  " add any database in current directory
+  if filereadable("cscope.out")
+      cs add cscope.out
+  elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+  endif
+  set csverb
+  set cscopetag 
+  " 添加快捷键更新 cscope 数据库
+  "nmap <F12> :!find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" > cscope.files && cscope -Rbqi cscope.files<CR>
+endif
+
+"ctrl+@ 后,按下s
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>    "查找C语言符号，即查找函数名、宏、枚举值等出现的地方
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>    "查找函数、宏、枚举等定义的位置，类似ctags所提供的功能
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>    "查找调用本函数的函数
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>    "查找指定的字符串
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>    "查找egrep模式，相当于egrep功能，但查找速度快多了
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>    "查找并打开文件，类似vim的find功能
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>  "查找包含本文件的文件列表
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>    "查找本函数调用的函数
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"taglist配置文件
+let Tlist_Show_One_File = 1         "只显示当前文件的taglist，默认是显示多个
+let Tlist_Exit_OnlyWindow = 1          "如果taglist是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist
+let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
+let Tlist_Auto_Highlight_Tag = 1       "自动高亮标签
+
+"let Tlist_Ctags_Cmd='/opt/local/bin/ctags'  "设置ctags命令的位置
+"nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
+"nmap <F8> :TlistToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " other keybindings for plugin toggle
 " 其他快捷键绑定
@@ -523,19 +584,8 @@ nnoremap <leader>v V`]
 nnoremap <leader>i :FixWhitespace<cr>
 nnoremap <leader>r :Unite register<cr>
 
-map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
-imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
-set tags=tags
-set tags+=./tags
 
 
-
-let Tlist_Show_One_File = 1         "只显示当前文件的taglist，默认是显示多个
-let Tlist_Exit_OnlyWindow = 1          "如果taglist是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist
-let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
-"let Tlist_Ctags_Cmd='/opt/local/bin/ctags'  "设置ctags命令的位置
-nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
 
 
 "------------------------------------------------------------------------------------------------------------------------------------------------------------------------
