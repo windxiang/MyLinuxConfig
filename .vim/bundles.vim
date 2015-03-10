@@ -50,7 +50,7 @@ Bundle "Shougo/wildfire.vim"
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'bling/vim-airline'
@@ -65,6 +65,7 @@ Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'vim-scripts/session.vim--Odding'
 Bundle 'rizzatti/dash.vim'
 Bundle 'vim-scripts/Conque-Shell'
+Bundle 'taglist.vim'
 
 "-------------
 " Other Utils

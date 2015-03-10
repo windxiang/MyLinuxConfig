@@ -15,7 +15,7 @@
 "F9 ->
 "F10 ->MarksBrowser插件，      
 "F11 ->
-"F12 ->
+"F12 ->在虚拟模式下，使用F12来切换是用鼠标模式，还是终端模式
 " ========================================================================
 "此处后面都是vundle的使用命令
 "BundleList            -列举列表(也就是.vimrc)中配置的所有插件  
@@ -97,7 +97,7 @@ set nofoldenable                                                  " disable fold
 set confirm                                                       " prompt when existing from an unsaved file  在处理未保存或只读文件的时候，弹出确认
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-set mouse=v                                                       " 在可视模式下支持鼠标模式
+"set mouse=v                                                       " 在可视模式下支持鼠标模式
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
 set scrolloff=5                                                   " 5 lines above/below cursor when scrolling  光标移动到buffer的顶部和底部时保持5行距离
@@ -490,6 +490,9 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
 
 let g:ctrlp_use_caching=0     "是否要使用cache，不使用第一次打开会很慢
 let g:ctrlp_show_hidden=1     "如果你想CtrlP扫描隐藏文件和目录，设置该选项为1:
+let g:ctrlp_max_depth = 100   "扫描目录深度
+let g:ctrlp_max_files = 0     "扫描文件最大数量
+let g:ctrlp_mruf_max = 0      "指定希望CtrlP记录的最近打开的文件历史的数目
 
 "===========================================
 "WinManager setting
@@ -519,6 +522,20 @@ nnoremap <leader>a :CtrlSF
 nnoremap <leader>v V`]
 nnoremap <leader>i :FixWhitespace<cr>
 nnoremap <leader>r :Unite register<cr>
+
+map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+imap <F8> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR> :TlistUpdate<CR>
+set tags=tags
+set tags+=./tags
+
+
+
+let Tlist_Show_One_File = 1         "只显示当前文件的taglist，默认是显示多个
+let Tlist_Exit_OnlyWindow = 1          "如果taglist是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist
+let Tlist_GainFocus_On_ToggleOpen = 1  "打开taglist时，光标保留在taglist窗口
+"let Tlist_Ctags_Cmd='/opt/local/bin/ctags'  "设置ctags命令的位置
+nnoremap <leader>tl : Tlist<CR>        "设置关闭和打开taglist窗口的快捷键
 
 
 "------------------------------------------------------------------------------------------------------------------------------------------------------------------------
