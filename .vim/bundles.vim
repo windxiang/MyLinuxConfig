@@ -25,7 +25,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/ShowMarks'
 Bundle 'vim-scripts/Marks-Browser'
 Bundle 'spiiph/vim-space'
-Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-unimpaired'  
 Bundle 'tpope/vim-repeat'
 
 "--------------
@@ -36,6 +36,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'kana/vim-smartinput'
 Bundle 'godlygeek/tabular'
+"对齐线插件,快捷键F4
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'yonchu/accelerated-smooth-scroll'
 Bundle "michaeljsmith/vim-indent-object"

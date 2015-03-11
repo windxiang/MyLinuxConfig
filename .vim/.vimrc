@@ -158,13 +158,26 @@ let g:html_indent_style1 = "inc"
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<
 
+
+
+
 "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 " Plugin settings
 "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 "
-"IndentGuides
+"Indent-Guides插件
+"默认开启
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_guide_size = 1 
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+hi IndentGuidesOdd guibg=red ctermbg=3
+hi IndentGuidesEven guibg=green ctermbg=4
 
+
+
+"-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 "syntastic
 "let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers=['jshint']
@@ -553,6 +566,9 @@ nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>  "查找包含本文件
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>    "查找本函数调用的函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"输入,.后，就可以查找当前光标的字符，并且以列表的形式显示出来
+:nmap <Leader>. :exec 'lvimgrep /' . input('/', expand('<cword>')) . '/j % <bar> lopen'<CR> 
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "taglist配置文件
@@ -732,7 +748,17 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
+"新建文件，自动插入文件头 
+
+"python 文件
+autocmd BufNewFile *.py call setline(1,'#!/usr/bin/env python') |
+\ call setline(2,'') |
+\ call setline(3,'#coding:utf-8') |
+\ call setline(4,'') |
+\ call setline(5,'') |
+\ exe "normal G"
+augroup END 
+
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func SetTitle() 
